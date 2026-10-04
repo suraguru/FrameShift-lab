@@ -280,3 +280,201 @@ input[type="range"]:focus::-webkit-slider-thumb {
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 20px 20px;
 }
+
+/* ============================================================
+   MOBILE GUARD — "Desktop Only" Blocker Screen
+   ============================================================ */
+
+.mobile-guard {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* CRT scanline overlay */
+.mobile-guard__scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.1) 1px,
+    rgba(0, 0, 0, 0.1) 2px
+  );
+  z-index: 2;
+}
+
+/* Subtle animated grid */
+.mobile-guard__grid {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    linear-gradient(rgba(0, 255, 156, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 156, 0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: mobile-guard-grid-drift 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes mobile-guard-grid-drift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* Center content */
+.mobile-guard__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 380px;
+}
+
+/* Glowing monitor icon */
+.mobile-guard__icon {
+  position: relative;
+  color: var(--color-accent-green);
+  margin-bottom: 1.75rem;
+  animation: mobile-guard-float 3s ease-in-out infinite;
+}
+
+.mobile-guard__icon-glow {
+  position: absolute;
+  inset: -12px;
+  background: radial-gradient(circle, rgba(0, 255, 156, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes mobile-guard-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* Title */
+.mobile-guard__title {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-text-primary);
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.mobile-guard__title-bracket {
+  color: var(--color-accent-blue);
+  font-weight: 400;
+}
+
+/* Divider */
+.mobile-guard__divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.mobile-guard__divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border-light),
+    transparent
+  );
+}
+
+.mobile-guard__divider-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent-blue);
+  box-shadow: 0 0 6px var(--color-accent-blue);
+}
+
+/* Message text */
+.mobile-guard__message {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0 0 0.5rem;
+}
+
+.mobile-guard__label {
+  color: var(--color-accent-green);
+  font-weight: 600;
+}
+
+.mobile-guard__sub-message {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 0 1.75rem;
+}
+
+/* Status badge */
+.mobile-guard__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.02);
+  margin-bottom: 1.5rem;
+}
+
+.mobile-guard__status-led {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--color-accent-yellow);
+  box-shadow: 0 0 6px var(--color-accent-yellow), 0 0 12px var(--color-accent-yellow);
+  animation: blink-slow 2s ease-in-out infinite;
+}
+
+.mobile-guard__status-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+/* Terminal footer */
+.mobile-guard__terminal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-dim);
+}
+
+.mobile-guard__terminal-prompt {
+  color: var(--color-accent-green);
+}
+
+.mobile-guard__terminal-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  background: var(--color-accent-green);
+  animation: blink-slow 1s step-end infinite;
+}

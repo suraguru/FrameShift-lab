@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, VT323, IBM_Plex_Mono } from "next/font/google";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import MobileGuard from "@/components/MobileGuard";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -32,8 +33,11 @@ export default function RootLayout({
         className="h-full font-sans bg-bg text-text-primary overflow-hidden"
         suppressHydrationWarning
       >
-        <ErrorBoundary>{children}</ErrorBoundary>
+        <ErrorBoundary>
+          <MobileGuard>{children}</MobileGuard>
+        </ErrorBoundary>
       </body>
     </html>
   );
 }
+

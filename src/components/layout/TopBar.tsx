@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useRef, useCallback, useEffect } from "react";
+import Image from "next/image";
+
 import {
   Download, Upload, Settings, Save, FolderOpen, Loader2,
   Monitor, Cpu, Undo2, Redo2, Zap,
@@ -41,7 +43,7 @@ export default function TopBar() {
       const file = e.target.files?.[0];
       if (file) {
         const url = URL.createObjectURL(file);
-        const img = new Image();
+        const img = new window.Image();
         img.onload = () => {
           const media: MediaItem = {
             id: crypto.randomUUID?.() ?? Math.random().toString(36).slice(2),
@@ -152,9 +154,14 @@ export default function TopBar() {
       {/* Left: Logo + Project Name */}
       <div className="flex items-center gap-2.5">
         <div className="led-indicator bg-accent-green text-accent-green animate-pulse-glow" />
-        <span className="font-pixel text-base tracking-[0.2em] text-text-primary uppercase">
-          FRAMESHIFT
-        </span>
+        <Image 
+          src="/logo.png" 
+          alt="FrameShift Logo" 
+          width={160} 
+          height={32} 
+          className="h-8 w-auto object-contain drop-shadow-[0_0_8px_rgba(0,255,156,0.3)]"
+          priority
+        />
         <div className="w-px h-5 bg-border mx-1" />
         <input
           type="text"
