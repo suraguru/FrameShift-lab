@@ -38,11 +38,11 @@ export default function MobileGuard({
       <div className="mobile-guard__content">
         {/* Logo */}
         <div className="mobile-guard__icon">
-          <Image 
-            src="/logo.png" 
-            alt="FrameShift Logo" 
-            width={320} 
-            height={64} 
+          <Image
+            src="/logo.png"
+            alt="FrameShift Logo"
+            width={320}
+            height={64}
             className="w-72 sm:w-80 h-auto object-contain drop-shadow-[0_0_12px_rgba(0,255,156,0.25)]"
             priority
           />
@@ -65,7 +65,7 @@ export default function MobileGuard({
 
         {/* Message */}
         <p className="mobile-guard__message">
-          <span className="mobile-guard__label">FrameShift Workstation</span> is
+          <span className="mobile-guard__label">FrameShift Lab </span> is
           engineered for desktop &amp; laptop displays.
         </p>
 
