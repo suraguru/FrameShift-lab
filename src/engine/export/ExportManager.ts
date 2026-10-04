@@ -310,7 +310,7 @@ export async function processJob(jobId: string) {
            console.log("[ExportManager] Audio muxing complete");
          } catch (muxErr: any) {
            console.warn("[ExportManager] Audio muxing failed, exporting without audio:", muxErr);
-           logConsole("warning", `Audio muxing failed (${muxErr.message || muxErr}). Exporting video without audio track.`);
+           logConsole("warn", `Audio muxing failed (${muxErr.message || muxErr}). Exporting video without audio track.`);
            // finalBlob remains the video-only blob — export still succeeds
          }
       }
