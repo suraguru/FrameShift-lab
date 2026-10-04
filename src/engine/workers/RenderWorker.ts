@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// ART TRACK WORKSTATION — RENDER WORKER
+// FRAMESHIFT WORKSTATION — RENDER WORKER
 // Runs in a dedicated Web Worker thread for off-main-thread rendering
 // ═══════════════════════════════════════════════════════════
 // ═══════════════════════════════════════════════════════════

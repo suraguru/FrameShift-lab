@@ -12,7 +12,7 @@ const ibmPlex = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Art Track | Creative Workstation",
+  title: "FrameShift | Creative Workstation",
   description:
     "Enterprise-grade retro-futuristic creative media workstation for real-time image and video processing.",
 };

@@ -50,7 +50,7 @@ export function useKeyboardShortcuts() {
       // Ctrl+S: Save (handled in TopBar)
       if (ctrl && e.key === "s") {
         e.preventDefault();
-        document.dispatchEvent(new CustomEvent("arttrack:save"));
+        document.dispatchEvent(new CustomEvent("frameshift:save"));
         return;
       }
 

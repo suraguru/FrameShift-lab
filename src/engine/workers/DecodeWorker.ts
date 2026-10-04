@@ -23,7 +23,7 @@ self.onmessage = async (e) => {
     const mp4boxfile = MP4Box.createFile();
     
     let videoTrack: any = null;
-    let decoder: VideoDecoder;
+    let decoder: VideoDecoder | undefined;
     let frameCount = 0;
 
     mp4boxfile.onReady = (info: any) => {
@@ -56,7 +56,8 @@ self.onmessage = async (e) => {
       const trak = mp4boxfile.getTrackById(videoTrack.id);
       let description: Uint8Array | undefined;
       for (const entry of trak.mdia.minf.stbl.stsd.entries) {
-        const box = entry.avcC || entry.hvcC || entry.vpcC || entry.av1C;
+        const e = entry as any;
+        const box = e.avcC || e.hvcC || e.vpcC || e.av1C;
         if (box) {
           const stream = new (MP4Box as any).DataStream(undefined, 0, (MP4Box as any).DataStream.BIG_ENDIAN);
           box.write(stream);
@@ -82,7 +83,7 @@ self.onmessage = async (e) => {
           duration: (sample.duration * 1000000) / sample.timescale,
           data: sample.data
         });
-        decoder.decode(chunk);
+        decoder!.decode(chunk);
       }
     };
 
@@ -95,7 +96,7 @@ self.onmessage = async (e) => {
       if (done) break;
       
       // Backpressure: Wait if decoder queue or pipeline is full (limit to 30 frames in-flight)
-      while ((decoder && decoder.decodeQueueSize >= 20) || pendingFrames >= 20) {
+      while ((decoder !== undefined && decoder.decodeQueueSize >= 20) || pendingFrames >= 20) {
         await new Promise(r => setTimeout(r, 10));
       }
 

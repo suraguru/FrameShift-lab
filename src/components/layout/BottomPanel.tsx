@@ -165,7 +165,7 @@ export default function BottomPanel() {
               <div className="w-px h-6 bg-border mx-2" />
 
               <button
-                onClick={() => document.dispatchEvent(new CustomEvent("arttrack:save-frame"))}
+                onClick={() => document.dispatchEvent(new CustomEvent("frameshift:save-frame"))}
                 className="p-2 text-text-muted hover:text-accent-green hover:bg-accent-green/10 rounded-full transition-all"
                 title="Save Frame"
               >

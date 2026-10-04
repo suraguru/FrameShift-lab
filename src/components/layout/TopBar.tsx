@@ -95,7 +95,7 @@ export default function TopBar() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${projectName.replace(/\s+/g, "_")}.arttrack.json`;
+    a.download = `${projectName.replace(/\s+/g, "_")}.frameshift.json`;
     a.click();
     URL.revokeObjectURL(url);
     addEntry("success", `Project saved: ${projectName}`, "Project");
@@ -104,8 +104,8 @@ export default function TopBar() {
   // Listen for Ctrl+S
   useEffect(() => {
     const handler = () => handleSaveProject();
-    document.addEventListener("arttrack:save", handler);
-    return () => document.removeEventListener("arttrack:save", handler);
+    document.addEventListener("frameshift:save", handler);
+    return () => document.removeEventListener("frameshift:save", handler);
   }, [handleSaveProject]);
 
   const handleLoadProject = useCallback(
@@ -153,7 +153,7 @@ export default function TopBar() {
       <div className="flex items-center gap-2.5">
         <div className="led-indicator bg-accent-green text-accent-green animate-pulse-glow" />
         <span className="font-pixel text-base tracking-[0.2em] text-text-primary uppercase">
-          ART TRACK
+          FRAMESHIFT
         </span>
         <div className="w-px h-5 bg-border mx-1" />
         <input
@@ -182,7 +182,7 @@ export default function TopBar() {
           ref={projectInputRef}
           onChange={handleLoadProject}
           className="hidden"
-          accept=".json,.arttrack.json"
+          accept=".json,.frameshift.json"
         />
 
         <button
@@ -308,7 +308,7 @@ export default function TopBar() {
                     const state = useExportStore.getState();
                     
                     if (state.exportMode === "quick") {
-                      document.dispatchEvent(new CustomEvent("arttrack:quick-export", { 
+                      document.dispatchEvent(new CustomEvent("frameshift:quick-export", { 
                         detail: { format: state.format, fps: state.fps } 
                       }));
                     } else {

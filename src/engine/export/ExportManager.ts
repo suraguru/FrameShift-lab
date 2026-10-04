@@ -31,7 +31,7 @@ export async function processJob(jobId: string) {
     isProcessing = true;
     cancelController = new AbortController();
     const update = (updates: any) => useExportStore.getState().updateJobProgress(jobId, updates);
-    const logConsole = (level: "info" | "success" | "warning" | "error", msg: string) => 
+    const logConsole = (level: "info" | "success" | "warn" | "error", msg: string) => 
       useConsoleStore.getState().addEntry(level, msg, "Export");
 
     const job = useExportStore.getState().jobs.find((j) => j.id === jobId);
@@ -319,7 +319,7 @@ export async function processJob(jobId: string) {
       const url = URL.createObjectURL(finalBlob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `arttrack-export-${options.resolution}.${finalFilename}`;
+      a.download = `frameshift-export-${options.resolution}.${finalFilename}`;
       a.click();
       URL.revokeObjectURL(url);
 

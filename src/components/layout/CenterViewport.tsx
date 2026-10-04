@@ -270,15 +270,15 @@ export default function CenterViewport() {
         const url = canvasRef.current.toDataURL("image/png");
         const a = document.createElement("a");
         a.href = url;
-        a.download = `arttrack-frame-${activeMedia.name}-${currentTime.toFixed(2)}s.png`;
+        a.download = `frameshift-frame-${activeMedia.name}-${currentTime.toFixed(2)}s.png`;
         a.click();
         addEntry("success", "Frame saved", "Export");
       } catch (err: any) {
         addEntry("error", `Save frame failed: ${err.message}`, "Export");
       }
     };
-    document.addEventListener("arttrack:save-frame", handleSaveFrame);
-    return () => document.removeEventListener("arttrack:save-frame", handleSaveFrame);
+    document.addEventListener("frameshift:save-frame", handleSaveFrame);
+    return () => document.removeEventListener("frameshift:save-frame", handleSaveFrame);
   }, [activeMedia, currentTime, addEntry]);
 
   // Export logic has been moved to background worker queue for final renders.
@@ -305,7 +305,7 @@ export default function CenterViewport() {
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = url;
-          a.download = `arttrack-quick-${activeMedia.name}.webm`;
+          a.download = `frameshift-quick-${activeMedia.name}.webm`;
           a.click();
           URL.revokeObjectURL(url);
           addEntry("success", "Quick Export completed", "Export");
@@ -335,8 +335,8 @@ export default function CenterViewport() {
       }
     };
     
-    document.addEventListener("arttrack:quick-export", handleQuickExport);
-    return () => document.removeEventListener("arttrack:quick-export", handleQuickExport);
+    document.addEventListener("frameshift:quick-export", handleQuickExport);
+    return () => document.removeEventListener("frameshift:quick-export", handleQuickExport);
   }, [activeMedia, addEntry, isPlaying]);
 
   // Pan/Zoom handlers

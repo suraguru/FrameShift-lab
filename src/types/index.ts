@@ -1,5 +1,5 @@
 /* ============================================================
-   ART TRACK WORKSTATION — TYPE DEFINITIONS
+   FRAMESHIFT WORKSTATION — TYPE DEFINITIONS
    ============================================================ */
 
 
